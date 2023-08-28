@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<head>
+	<title>Register</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href= "/stylesheets/style.css" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+</head>
+
+<body>
+ <div class="container-tutorregister">
+    <div class="card-tutorregister">
+      <h1>Tutor Registration</h1>
+      
+      <form id="registration-form" action="/tutorregister" method="POST" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+        
+        <input type="hidden" id="identifier" name="identifier" value="<?php echo uniqid(); ?>">
+        
+        <input type="submit" value="Register">
+      </form>
+		 <a href="login">Login</a> |
+   
+    </div>
+  </div>
+  
+  <script>
+    function registerTutor() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirm-password").value;
+      
+      if (name === "" || email === "" || password === "" || confirmPassword === "") {
+        alert("Please fill in all fields.");
+        return false;
+      }
+      
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+      }
+      
+      // Create an AJAX request
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "register_tutor.php", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      
+      // Prepare the data to be sent
+      var data = "name=" + encodeURIComponent(name) +
+                 "&email=" + encodeURIComponent(email) +
+                 "&password=" + encodeURIComponent(password);
+      
+      // Define the callback function
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Registration successful, display response message
+          var response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            document.getElementById("dashboard").innerHTML = "Hello, " + response.name + "!";
+          } else {
+            alert(response.message);
+          }
+        } else if (xhr.readyState === 4 && xhr.status !== 200) {
+          // Error occurred during registration
+          alert("An error occurred. Please try again later.");
+        }
+      };
+      
+      // Send the request
+      xhr.send(data);
+      
+      return false; // Prevent the form from submitting normally
+    }
+  </script>
+  
+  
+  
+  
+  </body>
+  </html>

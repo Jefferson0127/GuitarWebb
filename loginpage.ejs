@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+ <head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href= "/stylesheets/style.css" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+ <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+<script src="/path/to/cdn/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+<div class="hero">
+	<nav>
+<img src="images/LogoHome.png">
+	<ul>
+		
+		
+		<li><a href=schedule>Schedule</a></li>	
+		<img src="images/LogoMark.png" class="user-pic" onclick="toggleMenu()">
+	</ul>
+	
+	<div class="sub-menu-wrap" id="subMenu">
+	<div class="sub-menu">
+	<div class="user-info">
+	<center>
+	<h2>Student Dashboard</h2>
+		</center>
+		</div>
+	<hr>	
+
+	
+	<a href="#" class="sub-menu-link">
+	
+	<span></span>
+	</a>
+	
+	<a href="#" class="sub-menu-link"  >
+	<a href="login"><p onclick="logout();">Log Out</p></a>
+	<span></span>
+	</a>
+	
+	
+	
+	
+	</div>
+</div>	
+ </nav>
+
+
+<div class="container-booking">
+    <div class="form-container">
+        <h2>Booking</h2>
+        <form action="/loginpage" method="POST" id="booking-form" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tutor">Tutor:</label>
+                <select name="tutor" class="form-select" aria-label="Default select example" required>
+                    <option selected disabled>Select Tutor</option>
+                    <% if (tutors.length != 0) {
+                        var i = 0;
+                        tutors.forEach(function(tutor) { %>
+                            <option value="<%= tutor.id %>"><%= tutor.name %></option>
+                        <% i++;
+                        })
+                    } %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="courses">Courses:</label>
+                <select name="courses" class="form-select" aria-label="Default select example" required>
+                    <option selected disabled>Select Courses</option>
+                    <option value="Pentatonic Scale">Pentatonic Scale</option>
+                    <option value="Open Position Notes">Open Position Notes</option>
+                    <option value="Essential Music Theory">Essential Music Theory</option>
+                    <option value="Reading Standard Music Notation and Tablature">Reading Standard Music Notation and Tablature</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Book Now">
+            </div>
+        </form>
+    </div>
+	<center> <div class="booking-card"> <div class="booking-text"> <h2>Book for Your First Guitar Lesson!</h2> <p>We're excited to help you get started on your musical journey. Fill out the form to book your first guitar lesson. Our experienced tutors are ready to guide you every step of the way.</p> </div> </div> </center>
+</div>
+
+<script>
+    function validateForm() {
+        var dateInput = document.getElementById('date');
+        var timeInput = document.getElementById('time');
+        var tutorSelect = document.getElementsByName('tutor')[0];
+        var coursesSelect = document.getElementsByName('courses')[0];
+        
+        if (!dateInput.value || !timeInput.value || tutorSelect.selectedIndex === 0 || coursesSelect.selectedIndex === 0) {
+            alert('Please fill in all fields.');
+            return false; // Prevent form submission
+        }
+        
+        return true; // Allow form submission
+    }
+</script>
+
+
+
+
+
+
+
+	
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+        const currentDate = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', currentDate);
+    });
+  
+  
+document.addEventListener('DOMContentLoaded', function() {
+        const bookingForm = document.getElementById('booking-form');
+        const timeInput = document.getElementById('time');
+        
+        bookingForm.addEventListener('submit', function(event) {
+            const selectedTime = new Date(`1970-01-01T${timeInput.value}`);
+            const closingTime = new Date(`1970-01-01T19:00:00`);
+            
+            if (selectedTime.getHours() > closingTime.getHours() || (selectedTime.getHours() === closingTime.getHours() && selectedTime.getMinutes() > closingTime.getMinutes())) {
+                event.preventDefault();
+                alert('You cannot book an appointment past 7:00 PM.');
+            }
+        });
+    });
+
+</script>	
+	
+<script>
+let subMenu = document.getElementById("subMenu");
+function toggleMenu(){
+subMenu.classList.toggle("open-menu");
+}
+
+
+</script>
+
+
+
+
+  </body>
+</html>

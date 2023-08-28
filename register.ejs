@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+	<title>Register</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href= "/stylesheets/style.css" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="logo-container">
+    <a href="/"><img src="/images/LogoHome.png" alt="Logo"></a>
+  </div>
+
+
+	<div class="container-me">
+    <div class="card-new card-colorful" style="width: 50rem; height:530px">
+        <div class="card-header">Register Form</div>
+        <div class="card-body">
+            <form method="POST" id="registration-student">
+                <div class="mb-3">
+                    <label for="name-reg" class="form-label">Name</label>
+                    <input type="registration-student" class="form-control" id="reg-student" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email-reg" class="form-label">Email</label>
+                    <input type="email-student" class="form-control" id="student-email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password-reg" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password-reg" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password-conf-reg" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="password-conf-reg" name="password-confirm" required>
+                </div>
+                <center>
+                    <input type="submit" value="Submit">
+                </center>
+									<div class="links-container">
+      <a href="login">Login</a> |
+      <a href="tutorsign">Sign up as a Tutor</a>
+    </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const registrationForm = document.getElementById('registration-form');
+    const emailInput = document.getElementById('email-reg');
+    const passwordInput = document.getElementById('password-reg');
+    const confirmPasswordInput = document.getElementById('password-conf-reg');
+
+    registrationForm.addEventListener('submit', function(event) {
+        if (!isValidEmail(emailInput.value)) {
+            event.preventDefault();
+            alert('Please enter a valid email address.');
+        }
+
+        if (passwordInput.value.length < 8) {
+            event.preventDefault();
+            alert('Password must be at least 8 characters long.');
+        }
+
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            event.preventDefault();
+            alert('Passwords do not match.');
+        }
+    });
+
+    function isValidEmail(email) {
+        // Basic email validation regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+</script>
+
+	
+	</body>
+</html>

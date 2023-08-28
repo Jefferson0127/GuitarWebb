@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<head>
+	<title>Incidents</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href= "/stylesheets/style.css" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>	
+
+
+<body>
+<div class="hero">
+	<nav>
+<img src="images/LogoHome.png">
+	<ul>
+		
+		
+		<li><a href=schedule>Schedule</a></li>
+		<li><a href="#">Contact</a></li>
+		<img src="images/LogoMark.png" class="user-pic" onclick="toggleMenu()">
+	</ul>
+	
+	<div class="sub-menu-wrap" id="subMenu">
+	<div class="sub-menu">
+	<div class="user-info">
+	<center>
+	<h2>Student Dashboard</h2>
+		</center>
+		</div>
+	<hr>	
+
+	<a href="loginpage" class="sub-menu-link">
+	<p>Booking</p>
+	<span></span>
+	</a>
+	<a href="#" class="sub-menu-link"  >
+	
+<a href="login"><p onclick="logout();">Log Out</p></a>
+	<span></span>
+	</a>
+	
+	
+	
+	
+	</div>
+</div>	
+ </nav>
+
+	<center>
+<table id="booking-table" >
+	
+		<tr>
+			<th>ID</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Tutor</th>
+			<th>Courses</th>
+		</tr>
+		
+		<% if (bookings.length !=0) {var i=1; bookings.forEach( function(data) {%>
+		<tr>
+			<td><%=data.id %></td>
+			<td><%=data.date %></td>
+			<td><%=data.time %></td>
+			<td><%=data.tutor %></td>
+			<td><%=data.courses %></td>
+			<td><a href="/editbooking/<%=data.id %>"  class="btn">Edit</a>
+			 <a href="/deletebooking/<%=data.id %>" id="table-delete" onclick="return confirm('Do you want to delete?')">Delete</button></td>
+		</tr>
+		<% i++; }) %> <%}%>
+		
+	</table>
+   	
+	</div>
+	</center>
+	</div>
+	
+	
+	
+
+  <script>
+function editRow(button) {
+    var row = button.closest('tr');
+    var cells = row.cells;
+    
+    var id = cells[0].innerText;
+    var date = cells[1].innerText;
+    var time = cells[2].innerText;
+    var tutor = cells[3].innerText;
+    var courses = cells[4].innerText;
+    
+    // Assuming you have an edit form with corresponding input fields
+    document.getElementById('edit-id').value = id;
+    document.getElementById('edit-date').value = date;
+    document.getElementById('edit-time').value = time;
+    document.getElementById('edit-tutor').value = tutor;
+    document.getElementById('edit-courses').value = courses;
+    
+    // Display the edit form
+    document.getElementById('edit-form').style.display = 'block';
+}
+
+function deleteRow(button) {
+    var row = button.closest('tr');
+    row.remove();
+}  
+</script>
+
+<script>
+let subMenu = document.getElementById("subMenu");
+function toggleMenu(){
+subMenu.classList.toggle("open-menu");
+}
+
+
+</script>
+
+
+</body>
+</html>

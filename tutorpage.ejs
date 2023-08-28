@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+ <head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href= "/stylesheets/style.css" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+ <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+<script src="/path/to/cdn/bootstrap.bundle.min.js"></script>
+
+
+
+  </style>
+    <script>
+    function toggleSidebar() {
+      var sidebar = document.getElementById("sidebar");
+      var toggleBtn = document.getElementById("toggle-btn");
+      
+      sidebar.classList.toggle("open");
+      toggleBtn.classList.toggle("active");
+    }
+    
+    function logout() {
+      // Implement logout functionality here
+      // ...
+    }
+  </script>
+</head>
+
+<body>
+ 
+<div id="toggle-btn" class="toggle-btn" onclick="toggleSidebar()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <div class="logo">
+      <img src="images/LogoHome.png" alt="Logo">
+    </div>
+    <ul>
+	
+      <li>Welcome, Tutors</li>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="login"> <button class="logout-btn" onclick="logout()">Logout</button></a></li>
+    </ul>
+  </div>
+  
+  
+    <div class="content">
+<center>
+    <h1>Dashboard</h1>
+
+    <form enctype="multipart/form-data" action="/upload" method="post">
+      <label for="photo">Upload Photo:</label>
+      <input type="file" name="photo" id="photo">
+      <button type="submit">Upload</button>
+    </form>
+</center>
+    <h2>Bookings</h2>
+  <div class="content">   
+   <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Courses</th>
+        </tr>
+      </thead>
+      <tbody>
+	  
+<% if (bookings.length!=0) {
+var i=0; bookings.forEach(function(booking) { %>
+        <tr>
+          <td><%=booking.studentname%></td>
+          <td><%=booking.date%></td>
+          <td><%=booking.time%></td>
+          <td><%=booking.courses%></td>
+		   <td><input type="checkbox" name="attendance"></td>
+		
+
+        </tr>
+<%
+i++;
+})
+}  %>
+      </tbody>
+    </table>
+	  <button type="submit" onclick="saveAttendance()">Save</button>
+  </div>
+  
+  
+  <script>
+    function saveAttendance() {
+      var attendanceCheckboxes = document.querySelectorAll('input[name="attendance"]');
+      var attendanceData = [];
+      
+      attendanceCheckboxes.forEach(function(checkbox) {
+        attendanceData.push({
+          studentName: checkbox.parentNode.previousElementSibling.textContent,
+          attendance: checkbox.checked
+        });
+      });
+      
+     
+      console.log(attendanceData);
+    }
+	
+	
+	
+  </script>
+  
+  </body>
+  </html>
+  
+  

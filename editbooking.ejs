@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+ <head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href= "/stylesheets/style.css" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"/>
+ <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+<script src="/path/to/cdn/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+<div class="hero">
+	<nav>
+
+	<ul>
+		
+		
+		<li><a href=schedule></a></li>	
+		
+	</ul>
+	
+	<div class="sub-menu-wrap" id="subMenu">
+	<div class="sub-menu">
+	<div class="user-info">
+	<center>
+	<h2>Student Dashboard</h2>
+		</center>
+		</div>
+	<hr>	
+
+	
+	<a href="#" class="sub-menu-link">
+	
+	<span></span>
+	</a>
+	
+	<a href="#" class="sub-menu-link"  >
+	<a href="login"><p onclick="logout();">Log Out</p></a>
+	<span></span>
+	</a>
+	
+	
+	
+	
+	</div>
+</div>	
+ </nav>
+
+
+  <div class="container-booking">
+      <div class="form-container">
+	<h2>Edit Your Booking</h2>
+
+    <form action="/updatebooking" method="POST"  id="booking-form" onsubmit="return validateForm()">
+ 
+ 	  <div class="form-group">
+        <label for="date">Booking ID:</label>
+        <input type="text" id="bookingid" name="bookingid" readonly value="<%= booking[0].id %>">
+      </div>
+	  
+	  <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required value="<%= booking[0].date %>">
+      </div>
+
+      <div class="form-group">
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required value="<%= booking[0].time %>">
+      </div>
+
+          <div class="form-group">
+        <label for="courses">Tutor:</label>
+        <select name="tutor" class="form-select" aria-label="Default select example">
+		
+ 
+  <option>Select Tutor</option>
+<% if (tutors.length!=0) {
+var i=0; tutors.forEach(function(tutor) { %>
+
+<option value="<%= tutor.name %>"><%= tutor.name %></option>
+
+<%
+i++;
+})
+}  %>
+			
+</select>
+
+      <div class="form-group">
+        <label for="courses">Courses:</label>
+        <select name="courses" class="form-select" aria-label="Default select example">
+ <option selected>Select Courses</option>
+  <option value="Pentatonic Scale">Pentatonic Scale</option>
+  <option value="Open Position Notes">Open Position Notes</option>
+  <option value="Essential Music Theory">Essential Music Theory</option>
+    <option value="Reading Standard Music Notation and Tablature">Reading Standard Music Notation and Tablature</option>
+
+
+      <div class="form-group">
+        <input type="submit" value="Update Booking">
+      </div>
+	  
+    </form>
+</div>	
+
+<script>
+    function validateForm() {
+        var dateInput = document.getElementById('date');
+        var timeInput = document.getElementById('time');
+        var tutorSelect = document.getElementsByName('tutor')[0];
+        var coursesSelect = document.getElementsByName('courses')[0];
+        
+        if (!dateInput.value || !timeInput.value || tutorSelect.selectedIndex === 0 || coursesSelect.selectedIndex === 0) {
+            alert('Please fill in all fields.');
+            return false; // Prevent form submission
+        }
+        
+        return true; // Allow form submission
+    }
+</script>
+
+
+
+
+
+
+
+	
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+        const currentDate = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', currentDate);
+    });
+  
+  
+document.addEventListener('DOMContentLoaded', function() {
+        const bookingForm = document.getElementById('booking-form');
+        const timeInput = document.getElementById('time');
+        
+        bookingForm.addEventListener('submit', function(event) {
+            const selectedTime = new Date(`1970-01-01T${timeInput.value}`);
+            const closingTime = new Date(`1970-01-01T19:00:00`);
+            
+            if (selectedTime.getHours() > closingTime.getHours() || (selectedTime.getHours() === closingTime.getHours() && selectedTime.getMinutes() > closingTime.getMinutes())) {
+                event.preventDefault();
+                alert('You cannot book an appointment past 7:00 PM.');
+            }
+        });
+    });
+
+</script>	

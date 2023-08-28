@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href= "/stylesheets/style.css" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+		
+	</style>
+</head>
+
+<body>
+
+  
+  <div class="container">
+    <video class="video-background" loop autoplay muted>
+      <source src="/images/Videobackground.mp4" type="video/mp4">
+    </video>
+	
+	<div class="logo-container">
+    <a href="/"><img src="/images/LogoHome.png" alt="Logo"></a>
+  </div>
+	
+<div class="container mt-5">
+    <div class="card-log" style="width: 60rem; height:350px" >
+      <div class="card-header">
+        <h5 class="card-title">Login Form</h5>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="/login">
+          <div class="form-log">
+            <label for="username">Username:</label>
+            <input type="text-log" id="username" name="username" class="form-control" required>
+          </div>
+          <div class="form-log">
+			<label for="password">Password:</label>          
+		   <input type="password" id="password" name="password" class="form-control" required>
+           
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        
+
+		  <%= message %>
+        </form>
+		<a href="register">Register</a> |
+		 <a href="login">Login</a> |
+      <a href="tutorsign">Sign up as a Tutor</a> 
+	
+    </div>
+  </div>
+</div>
+		
+      </div>
+    </div>
+  </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+	</body>
+</html>

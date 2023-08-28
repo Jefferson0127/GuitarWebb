@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+	<title>Tutor Sign Up</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href= "/stylesheets/style.css" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+
+
+
+  <script>
+
+	</script>
+</head>
+
+<body>
+
+<div class="logo-container">
+    <a href="/"><img src="/images/LogoHome.png" alt="Logo"></a>
+  </div>
+
+<center>
+   <div class="container-tutor">
+    <div class="card-tutor" style="width: 50rem; height: 530px">
+        <h2>Tutor Sign-Up</h2>
+        <form method="POST" action="/tutorsign" onsubmit="return submitForm(this);">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="tutor-register" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="tutor-email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tutor-tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="courses">Courses:</label>
+                <select name="courses" class="form-select" aria-label="Default select example">
+                    <option selected>Select Courses</option>
+                    <option value="Pentatonic Scale">Pentatonic Scale</option>
+                    <option value="Open Position Notes">Open Position Notes</option>
+                    <option value="Essential Music Theory">Essential Music Theory</option>
+                    <option value="Reading Standard Music Notation and Tablature">Reading Standard Music Notation and Tablature</option>
+                </select>
+            </div>
+
+            <button type="submit" id="submit" class="btn">Submit</button>
+        </form>
+
+        <a href="register">Register</a> |
+        <a href="login">Login</a> |
+        <a href="tutorsign">Sign up as a Tutor</a>
+    </div>
+</div>
+
+
+
+</body>
+</html>
